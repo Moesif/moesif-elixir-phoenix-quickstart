@@ -74,6 +74,9 @@ defmodule MyApp.MoesifMiddleware do
     # Perform the API call to Moesif here
     # Use your preferred HTTP client library and replace the placeholders with the actual endpoint and headers
 
+    # See Moesif API docs for details.
+    # https://www.moesif.com/docs/api#log-api-calls-in-batch
+
     endpoint = "https://api.moesif.net/v1/events/batch"
     headers = [
       {"Content-Type", "application/json"},
