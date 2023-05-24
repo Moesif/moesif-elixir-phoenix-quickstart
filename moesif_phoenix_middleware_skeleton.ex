@@ -80,8 +80,7 @@ defmodule MyApp.MoesifMiddleware do
       {"X-Moesif-Application-Id", "Your Moesif Application Id"}
     ]
 
-    payload = %{
-      events: [
+    payload = [
         %{
           request: %{
             time: request_start_time,
@@ -101,7 +100,7 @@ defmodule MyApp.MoesifMiddleware do
           }
         }
       ]
-    }
+
 
     case HTTPoison.post(endpoint, payload, headers) do
       {:ok, _response} ->
