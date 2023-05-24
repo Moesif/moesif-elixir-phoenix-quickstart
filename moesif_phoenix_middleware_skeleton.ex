@@ -59,7 +59,6 @@ defmodule MyApp.MoesifMiddleware do
           request_id: request_ip
         } ->
           response_end_time = DateTime.from_unix(request_start_time / 1000, "Z")
-          request_duration = response_end_time - request_start_time
 
           send_data_to_moesif(method, url, headers, body, conn.resp_body, conn.status, request_start_time, request_end_time, request_ip)
 
@@ -98,7 +97,6 @@ defmodule MyApp.MoesifMiddleware do
             status: response_status,
             headers: conn.resp_headers,
             body: response_body,
-            time: request_duration
           }
         }
       ]
