@@ -89,7 +89,6 @@ defmodule MyApp.MoesifMiddleware do
             ip_address: request_ip,
             headers: headers,
             body: body,
-            time: request_duration
           },
           response: %{
             time: request_end_time,
