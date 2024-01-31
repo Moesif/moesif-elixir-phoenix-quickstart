@@ -1,18 +1,38 @@
 # MicroserviceApp
 
-To start your Phoenix server:
+To build and start this example, you'll need to have Docker and Docker Compose installed.
+Edit the `docker-compose.yml` file to set the `MOESIF_APPLICATION_ID` environment variable to your Moesif Application ID.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+```
+docker-compose up --build
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Configuration
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+You'll see an example of how to configure the Moesif API in the `runtime.exs` file. You can use the following configuration pattern to set up the Moesif API hooks.
 
-## Learn more
+Remember to set the `MOESIF_APPLICATION_ID` environment variable to your Moesif Application ID when running. The other request functions below are optional.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```elixir
+config :moesif_api, :config,
+  application_id: System.get_env("MOESIF_APPLICATION_ID"),
+  get_user_id: fn(conn) ->
+    case conn.query_params["user_id"] do
+      nil -> nil
+      user_id -> "user-#{user_id}"
+    end
+  end,
+  get_company_id: fn(conn) ->
+    case Plug.Conn.get_req_header(conn, "x-company-id") |> List.first do
+      nil -> nil
+      company_id -> "company-#{company_id}"
+    end
+  end,
+  get_session_token: fn(conn) ->
+    case Plug.Conn.get_req_header(conn, "x-session-token") |> List.first do
+      nil -> nil
+      token -> token
+    end
+  end,
+  get_metadata: fn(_conn) -> %{"foo" => "bar"} end
+```
