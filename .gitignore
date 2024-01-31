@@ -25,3 +25,4 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 microservice_app-*.tar
 
+.elixir_ls/
