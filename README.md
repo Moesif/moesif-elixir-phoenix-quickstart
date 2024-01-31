@@ -1,4 +1,6 @@
-# MicroserviceApp
+# Moesif API Phoenix Example
+
+This shows how to use the Moesif API Elixir SDK with a Phoenix application. The SDK itself can be found here: https://github.com/Moesif/moesif-elixir-sdk
 
 To build and start this example, you'll need to have Docker and Docker Compose installed.
 Edit the `docker-compose.yml` file to set the `MOESIF_APPLICATION_ID` environment variable to your Moesif Application ID.
