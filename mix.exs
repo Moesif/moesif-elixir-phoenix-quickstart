@@ -4,7 +4,7 @@ defmodule MicroserviceApp.MixProject do
   def project do
     [
       app: :microservice_app,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -44,7 +44,7 @@ defmodule MicroserviceApp.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:elixir_uuid, "~> 1.2"},
       {:httpoison, "~> 1.0"},
-      {:moesif_api, "~> 0.1.0"},
+      {:moesif_api, "~> 0.2.0"},
     ]
   end
 
